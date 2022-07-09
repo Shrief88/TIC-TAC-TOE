@@ -1,7 +1,7 @@
 const grid = document.querySelector('.grid');
 const arrayGrid = Array.prototype.slice.call(document.querySelectorAll('.cell'));
 let isPlayerOne = true;
-let gameboard = [];
+let gameboard = [0,0,0,0,0,0,0,0,0];
 const result = document.querySelector('#result');
 
 
@@ -30,7 +30,25 @@ grid.addEventListener('click',(e)=>{
 })
 
 function endGame(gameboard){
-   return false;
+   for(let i=0;i<=2 ; i++){
+    if(gameboard[0+i] === gameboard[3+i] && gameboard[0+i] === gameboard[6+i] && gameboard[i] !== 0)
+        return true;
+   }
+
+   for(let i=0;i<=2 ; i++){
+    if(gameboard[0+3*i] === gameboard[1+3*i] && gameboard[0+3*i] === gameboard[2+3*i] && gameboard[3*i] !== 0)
+        return true;
+   }
+
+   if(gameboard[0] === gameboard[4] && gameboard[0] === gameboard[8] && gameboard[0] !== 0){
+    return true;
+   }
+
+   if(gameboard[2] === gameboard[4] && gameboard[2] === gameboard[6] && gameboard[2] !== 0){
+    return true;
+   }
+
 }
+
 
 

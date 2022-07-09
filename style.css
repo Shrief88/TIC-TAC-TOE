@@ -3,6 +3,8 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+    gap: 20px;
 }
 
 .grid{
@@ -27,5 +29,10 @@ body{
 
 .cell:nth-child(n+7){
     border-bottom:none;
+}
+
+#result{
+    font-size: 40px;
+    
 }
 
