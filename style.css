@@ -9,8 +9,9 @@ body{
 
 .grid{
     display: grid;
-    grid-template-columns: repeat(3,200px);
+    grid-template-columns: repeat(3,minmax(100px,200px));
     grid-template-rows: repeat(3,200px);
+   
 }
 
 .cell{
@@ -34,5 +35,11 @@ body{
 #result{
     font-size: 40px;
     
+}
+
+#restart{
+    padding: 20px;
+    border-radius: 10px;
+    font-size: 30px;
 }
 
