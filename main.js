@@ -15,6 +15,7 @@ const Gameboard = (()=>{
         }
     }
 
+
     return{setField , getGameboard ,reset};
 })()
 
@@ -37,15 +38,24 @@ const GameController = (()=>{
         return winningCombination.some((combination)=>{
                 return gameboard[combination[0]]==gameboard[combination[1]] &&
                 gameboard[combination[0]] == gameboard[combination[2]] && 
-                gameboard[combination[0]] !== 0 
+                gameboard[combination[0]] !== 0 ;
         })
+    }
+    
+    const findTheWinnngCombination = ()=>{
+        const gameboard = Gameboard.getGameboard();
+        return winningCombination.find((combination)=>{
+                return gameboard[combination[0]]==gameboard[combination[1]] &&
+                gameboard[combination[0]] == gameboard[combination[2]] && 
+                gameboard[combination[0]] !== 0 ;
+        }) 
     }
 
     const getRoundNumber = ()=>{
         return round;
     }
 
-    return{getRoundNumber,endGame,updateRound,resetRound};
+    return{getRoundNumber,endGame,updateRound,resetRound,findTheWinnngCombination};
 })()
 
 const displayController = (()=>{
@@ -76,6 +86,8 @@ const displayController = (()=>{
             }
 
             if(GameController.endGame()){
+                const winningCombination = GameController.findTheWinnngCombination();
+                updateWinnigFields(winningCombination);
                 if(div.textContent === "X"){
                     result.textContent = "Player one has won";
                 }else{
@@ -94,8 +106,18 @@ const displayController = (()=>{
         GameController.resetRound();
         cells.forEach(cell=>{
             cell.textContent = "";
+            result.textContent = "";
+            for(let i=0;i<9;i++){
+                cells[i].classList.remove('winning');
+            }
         })
     })
+
+    const updateWinnigFields = (combination)=>{
+        for(let i=0;i<3;i++){
+            cells[combination[i]].classList.add('winning');
+        }
+    }
 })()
 
 
